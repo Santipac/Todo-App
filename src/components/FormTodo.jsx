@@ -1,4 +1,11 @@
-import { Box, Button, FormControl, Input } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  FormControl,
+  Input,
+  InputGroup,
+  InputRightElement,
+} from '@chakra-ui/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
@@ -38,11 +45,26 @@ export const FormTodo = () => {
   };
 
   return (
-    <Box p="4">
+    <Box p="4" w={{ base: '100%', md: '70%', lg: '50%' }}>
       <form onSubmit={handleSubmit}>
         <FormControl display="flex">
-          <Input value={inputValue} onChange={onInputChange} bg={'#edf6f9'} />
-          <Button type="submit" mx="2" bg={'blue.400'} textColor="white">
+          <Input
+            value={inputValue}
+            onChange={onInputChange}
+            bg={'#edf6f9'}
+            color="black"
+            boxShadow="md"
+            fontSize={{ base: '0.8rem', sm: '1.1rem' }}
+          />
+
+          <Button
+            type="submit"
+            mx="2"
+            bg={'blue.400'}
+            fontWeight="normal"
+            textColor="white"
+            boxShadow="md"
+          >
             Add
           </Button>
         </FormControl>

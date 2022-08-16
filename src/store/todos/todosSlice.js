@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const todosList = [];
-
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: todosList,
@@ -20,6 +19,11 @@ export const todosSlice = createSlice({
         }
       });
     },
+    editTask: (state, action) => {
+      state.find(task =>
+        task.id === action.payload.id ? (task.name = action.payload.name) : null
+      );
+    },
     deleteTask: (state, action) => {
       const taskFound = state.find(task => task.id === action.payload);
       if (taskFound) {
@@ -30,6 +34,7 @@ export const todosSlice = createSlice({
 });
 
 //Actions Creators
-export const { createTask, itsComplete, deleteTask } = todosSlice.actions;
+export const { createTask, itsComplete, deleteTask, editTask } =
+  todosSlice.actions;
 
 export default todosSlice.reducer;

@@ -6,6 +6,7 @@ export const store = configureStore({
     todos: todosReducer,
   },
 });
+
 store.subscribe(() => {
   localStorage.setItem('reduxState', JSON.stringify(store.getState()));
 });
