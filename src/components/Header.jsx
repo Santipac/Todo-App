@@ -47,7 +47,7 @@ export const Header = () => {
             <Link as={LinkRouter} to="/">
               <MenuItem>Create</MenuItem>
             </Link>
-            <Link as={LinkRouter} to="todos">
+            <Link as={LinkRouter} to="/">
               <MenuItem>Task List</MenuItem>
             </Link>
 
