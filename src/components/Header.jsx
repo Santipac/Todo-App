@@ -22,10 +22,15 @@ export const Header = () => {
       alignItems="center"
       w={{ base: '100%', md: '70%', lg: '50%' }}
     >
-      <Heading as="h1" my="16" _light={{ color: 'white' }}>
+      <Heading
+        as="h1"
+        fontSize={{ base: '2xl', sm: '4xl' }}
+        my="16"
+        _light={{ color: 'white' }}
+      >
         TodoApp
       </Heading>
-      <Box ml="16" display="flex" alignItems="center">
+      <Box display="flex" alignItems="center">
         <Button
           onClick={() => toggleColorMode()}
           boxShadow="base"

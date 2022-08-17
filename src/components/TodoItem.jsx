@@ -1,11 +1,8 @@
 import { useDispatch } from 'react-redux/es/exports';
-import { deleteTask, editTask, itsComplete } from '../store/todos/todosSlice';
-import { CheckIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import { Button, GridItem, Input, Text } from '@chakra-ui/react';
+import { deleteTask, itsComplete } from '../store/todos/todosSlice';
+import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
+import { Button, GridItem, Input } from '@chakra-ui/react';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
-
-//TODO: Font Size and width elements should be responsive
 
 export const TodoItem = ({ id, name, completed }) => {
   const [inputValue, setInputValue] = useState(name);
@@ -15,18 +12,6 @@ export const TodoItem = ({ id, name, completed }) => {
     setInputValue(target.value);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
-    dispatch(editTask({ id, name: inputValue }));
-    Swal.fire({
-      position: 'top',
-      icon: 'success',
-      title: 'Your task has been changed successfully',
-      showConfirmButton: false,
-      timer: 1500,
-    });
-  };
-
   return (
     <>
       <GridItem
@@ -34,6 +19,7 @@ export const TodoItem = ({ id, name, completed }) => {
         justifyContent="space-between"
         alignItems="center"
         borderRadius="md"
+        w={{ base: '100%' }}
         p="4"
         _light={!completed ? { bg: 'whiteAlpha.300' } : { bg: 'green.800' }}
         _dark={!completed ? { bg: 'blackAlpha.300' } : { bg: 'green.800' }}
@@ -51,12 +37,7 @@ export const TodoItem = ({ id, name, completed }) => {
           boxShadow="md"
         />
 
-        <Button ml="2" onClick={onSubmit} boxShadow="md" _hover={'none'}>
-          <EditIcon />
-        </Button>
-
         <Button
-          _hover={'none'}
           bg="green.400"
           onClick={() => dispatch(itsComplete(id))}
           mx="2"
@@ -65,7 +46,6 @@ export const TodoItem = ({ id, name, completed }) => {
           <CheckIcon color="white" />
         </Button>
         <Button
-          _hover={'none'}
           bg="red.500"
           onClick={() => dispatch(deleteTask(id))}
           boxShadow="md"
