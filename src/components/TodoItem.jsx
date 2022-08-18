@@ -1,11 +1,12 @@
 import { useDispatch } from 'react-redux/es/exports';
 import { deleteTask, itsComplete } from '../store/todos/todosSlice';
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
-import { Button, GridItem, Input } from '@chakra-ui/react';
+import { Button, GridItem, Heading, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 
 export const TodoItem = ({ id, name, completed }) => {
   const [inputValue, setInputValue] = useState(name);
+  const [isDone, setIsDone] = useState(true);
   const dispatch = useDispatch();
 
   const onInputChange = ({ target }) => {

@@ -25,7 +25,7 @@ export const Header = () => {
       <Heading
         as="h1"
         fontSize={{ base: '2xl', sm: '4xl' }}
-        my="16"
+        my="12"
         _light={{ color: 'white' }}
       >
         TodoApp
@@ -42,7 +42,7 @@ export const Header = () => {
         >
           <MoonIcon size="50px" color="white" />
         </Button>
-        <Menu minHeight="min-content">
+        {/* <Menu minHeight="min-content">
           <ButtonGroup as={MenuButton}>
             <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
             <ChevronDownIcon />
@@ -58,7 +58,7 @@ export const Header = () => {
 
             <MenuItem>Logout</MenuItem>
           </MenuList>
-        </Menu>
+        </Menu> */}
       </Box>
     </Box>
   );

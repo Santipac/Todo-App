@@ -16,7 +16,7 @@ export const Screen = () => {
       }}
       margin="auto"
     >
-      <Box display="flex" flexDirection="column" alignItems="center" p="4">
+      <Box display="flex" flexDirection="column" alignItems="center" px="4">
         <Header />
         <FormTodo />
         <TodoList />
