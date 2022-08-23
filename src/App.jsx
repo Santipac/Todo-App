@@ -1,16 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
-import { Error } from './views/Error';
+import { AppRouter } from './router/AppRouter';
 
-import { Screen } from './views/Screen';
 function App() {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Screen />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-    </>
-  );
+  return <AppRouter />;
 }
 
 export default App;

@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const todosList = localStorage.getItem('todos')
-  ? JSON.parse(localStorage.getItem('todos'))
-  : [];
+const todosList = [];
 export const todosSlice = createSlice({
   name: 'todos',
   initialState: todosList,
   reducers: {
-    createTask: (state, action) => {
-      state.push({
-        id: Date.now(),
-        name: action.payload,
-        completed: false,
-      });
-      localStorage.setItem('todos', JSON.stringify(state));
+    clearTasksLogout: (state) =>{
+      state.length = 0
     },
-    itsComplete: (state, action) => {
+    setPrevTasks: (state, {payload})=>{
+      payload.map(el => state.push(el))
+    },
+    createTask: (state, action) => {
+      state.push(action.payload);
+      
+    },
+    updateTask: (state, action) => {
       state.find(task => {
         if (task.id === action.payload) {
           task.completed ? (task.completed = false) : (task.completed = true);
@@ -28,12 +28,13 @@ export const todosSlice = createSlice({
       if (taskFound) {
         state.splice(state.indexOf(taskFound), 1);
       }
-      localStorage.setItem('todos', JSON.stringify(state));
+      
     },
+    
   },
 });
 
 //Actions Creators
-export const { createTask, itsComplete, deleteTask } = todosSlice.actions;
+export const { createTask, updateTask, itsComplete, deleteTask, setPrevTasks, clearTasksLogout } = todosSlice.actions;
 
 export default todosSlice.reducer;

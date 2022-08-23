@@ -1,17 +1,24 @@
 import { useDispatch } from 'react-redux/es/exports';
-import { deleteTask, itsComplete } from '../store/todos/todosSlice';
+
+import { deleteTask, updateTask } from '../../store/todos/todosSlice';
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
-import { Button, GridItem, Heading, Input } from '@chakra-ui/react';
+import { Button, GridItem, Input } from '@chakra-ui/react';
 import { useState } from 'react';
+import { startDeletingTask, startUpdatingTasks } from '../../store/todos/thunks';
 
 export const TodoItem = ({ id, name, completed }) => {
   const [inputValue, setInputValue] = useState(name);
-  const [isDone, setIsDone] = useState(true);
+
   const dispatch = useDispatch();
 
   const onInputChange = ({ target }) => {
     setInputValue(target.value);
   };
+
+  const onCompleted = () =>{
+    dispatch(startUpdatingTasks(id, completed))
+    dispatch(updateTask(id))
+  }
 
   return (
     <>
@@ -34,22 +41,26 @@ export const TodoItem = ({ id, name, completed }) => {
           value={inputValue}
           color="black"
           border="2px solid"
-          onChange={onInputChange}
+          readOnly
           boxShadow="md"
         />
 
         <Button
           bg="green.400"
-          onClick={() => dispatch(itsComplete(id))}
+          onClick={() => onCompleted()}
           mx="2"
           boxShadow="md"
+          _hover={{}}
+          
         >
           <CheckIcon color="white" />
         </Button>
         <Button
           bg="red.500"
-          onClick={() => dispatch(deleteTask(id))}
+          onClick={() => dispatch(startDeletingTask(id))}
           boxShadow="md"
+          _hover={{}}
+          
         >
           <DeleteIcon color="white" />
         </Button>

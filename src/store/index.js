@@ -1,2 +1,3 @@
 export * from './store';
-export * from './todos/todosSlice';
+export * from './todos';
+export * from './auth';

@@ -1,3 +1,4 @@
+import { Link as LinkRouter } from 'react-router-dom';
 import { ChevronDownIcon, MoonIcon } from '@chakra-ui/icons';
 import {
   Avatar,
@@ -5,16 +6,29 @@ import {
   Button,
   ButtonGroup,
   Heading,
+  Image,
   Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
+  Tooltip,
   useColorMode,
 } from '@chakra-ui/react';
-import { Link as LinkRouter } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { startLogout } from '../../store/auth/thunks';
+
+
 export const Header = () => {
+  const {displayName, photoURL} = useSelector(state => state.auth)
+  
   const { colorMode, toggleColorMode } = useColorMode();
+  const dispatch = useDispatch()
+
+  const onLogout = () =>{
+    dispatch(startLogout())
+  }
   return (
     <Box
       display="flex"
@@ -35,30 +49,29 @@ export const Header = () => {
           onClick={() => toggleColorMode()}
           boxShadow="base"
           bg="none"
-          _hover={'none'}
+          _hover={{}}
           mr="4"
           _light={{ bg: 'whiteAlpha.200' }}
           _dark={{ bg: 'blackAlpha.400' }}
         >
           <MoonIcon size="50px" color="white" />
         </Button>
-        {/* <Menu minHeight="min-content">
+         <Menu minHeight="min-content">
           <ButtonGroup as={MenuButton}>
-            <Avatar name="Kent Dodds" src="https://bit.ly/kent-c-dodds" />
+            
+            <Tooltip label={displayName}>
+            <Avatar referrerPolicy="no-referrer"  name={displayName} src={`${photoURL}`}  />
+            </Tooltip>
             <ChevronDownIcon />
           </ButtonGroup>
 
-          <MenuList>
-            <Link as={LinkRouter} to="/">
-              <MenuItem>Create</MenuItem>
-            </Link>
-            <Link as={LinkRouter} to="/">
-              <MenuItem>Task List</MenuItem>
-            </Link>
-
-            <MenuItem>Logout</MenuItem>
+          <MenuList >
+          <Text textAlign='center' py="2">{displayName}</Text>
+           
+            <MenuItem as={LinkRouter} to="/auth/login" onClick={onLogout}>Logout</MenuItem>
+           
           </MenuList>
-        </Menu> */}
+        </Menu> 
       </Box>
     </Box>
   );

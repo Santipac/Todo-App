@@ -1,10 +1,7 @@
 import { Box } from '@chakra-ui/react';
-import React from 'react';
-import { FormTodo } from '../components/FormTodo';
-import { Header } from '../components/Header';
-import { TodoList } from '../components/TodoList';
+import { Header, TodoForm, TodoList } from './components/';
 
-export const Screen = () => {
+export const TodoPage = () => {
   return (
     <Box
       minHeight="100vh"
@@ -15,10 +12,11 @@ export const Screen = () => {
         bgGradient: 'linear(to-r, #4d1458 10.9%, #3e1566 87.1%)',
       }}
       margin="auto"
+      className='animate__animated animate__fadeIn animate__faster'
     >
       <Box display="flex" flexDirection="column" alignItems="center" px="4">
         <Header />
-        <FormTodo />
+        <TodoForm />
         <TodoList />
       </Box>
     </Box>

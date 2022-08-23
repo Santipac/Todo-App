@@ -1,17 +1,10 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  Input,
-  InputGroup,
-  InputRightElement,
-} from '@chakra-ui/react';
+import { Box, Button, FormControl, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Swal from 'sweetalert2';
-import { createTask } from '../store/todos/todosSlice';
+import { createTask, startNewTask } from '../../store/todos';
 
-export const FormTodo = () => {
+export const TodoForm = () => {
   const [inputValue, setInputValue] = useState('');
   const taskList = useSelector(state => state.todos);
   const dispatch = useDispatch();
@@ -40,8 +33,9 @@ export const FormTodo = () => {
       });
     }
 
-    dispatch(createTask(inputValue));
+    dispatch(startNewTask(inputValue));
     setInputValue('');
+    
   };
 
   return (
