@@ -117,14 +117,14 @@ export const Login = () => {
       </form>
       {errorMessage && (
         <Alert
-          bgColor="red.600"
+          bgColor="red.500"
           borderRadius="md"
           mt="4"
           status="error"
           className="animate__animated animate__bounceIn"
         >
-          <AlertIcon />
-          {errorMessage}
+          <AlertIcon color="#a42f2f"/>
+          <Text color="white">{errorMessage}</Text>
         </Alert>
       )}
       <Box alignSelf="end" mt="4">
