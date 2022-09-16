@@ -1,7 +1,13 @@
-import { doc, collection, setDoc, updateDoc, deleteDoc } from 'firebase/firestore/lite';
+import {
+  doc,
+  collection,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore/lite';
 import { FirebaseDB } from '../../firebase/config';
 import { loadNotes } from '../../firebase/providers';
-import { createTask, deleteTask, itsComplete, setPrevTasks } from './todosSlice';
+import { createTask, deleteTask, setPrevTasks } from './todosSlice';
 
 export const startNewTask = name => {
   return async (dispatch, getState) => {
@@ -38,11 +44,10 @@ export const startUpdatingTasks = (id, completed) => {
   };
 };
 
-export const startDeletingTask = (id) =>{
-    return async (dispatch, getState)=>{
-    const { uid } = getState().auth
-    dispatch(deleteTask(id))
-    await deleteDoc(doc(FirebaseDB, `${uid}/todo/tasks/${id}`))
-    
-    }
-}
+export const startDeletingTask = id => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    dispatch(deleteTask(id));
+    await deleteDoc(doc(FirebaseDB, `${uid}/todo/tasks/${id}`));
+  };
+};
