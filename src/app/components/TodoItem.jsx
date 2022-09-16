@@ -1,20 +1,21 @@
 import { useDispatch } from 'react-redux/es/exports';
-
+import { FiEdit, FiCheck, FiTrash } from 'react-icons/fi';
 import { checkerTask } from '../../store/todos/todosSlice';
 import { CheckIcon, DeleteIcon } from '@chakra-ui/icons';
 import { Button, GridItem, Input } from '@chakra-ui/react';
 import { useState } from 'react';
 import {
+  startCheckingTasks,
   startDeletingTask,
-  startUpdatingTasks,
 } from '../../store/todos/thunks';
+import { Link } from 'react-router-dom';
 
 export const TodoItem = ({ id, name, completed }) => {
   const [inputValue, setInputValue] = useState(name);
   const dispatch = useDispatch();
 
   const onCompleted = () => {
-    dispatch(startUpdatingTasks(id, completed));
+    dispatch(startCheckingTasks(id, completed));
     dispatch(checkerTask(id));
   };
 
@@ -42,6 +43,18 @@ export const TodoItem = ({ id, name, completed }) => {
           readOnly
           boxShadow="md"
         />
+
+        <Button
+          as={Link}
+          to={`/edit-task/${id}`}
+          bgColor="#edf6f9"
+          color="black"
+          ml="2"
+          boxShadow="md"
+          _hover={{}}
+        >
+          <FiEdit size="25px" />
+        </Button>
 
         <Button
           bg="green.400"

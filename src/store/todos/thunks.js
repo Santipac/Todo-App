@@ -7,7 +7,7 @@ import {
 } from 'firebase/firestore/lite';
 import { FirebaseDB } from '../../firebase/config';
 import { loadNotes } from '../../firebase/providers';
-import { createTask, deleteTask, setPrevTasks } from './todosSlice';
+import { createTask, deleteTask, setPrevTasks, updateTask } from './todosSlice';
 
 export const startNewTask = name => {
   return async (dispatch, getState) => {
@@ -34,13 +34,24 @@ export const startLoadingTasks = () => {
   };
 };
 
-export const startUpdatingTasks = (id, completed) => {
+export const startCheckingTasks = (id, completed) => {
   return async (dispatch, getState) => {
     const { uid } = getState().auth;
     const taskRef = doc(FirebaseDB, `${uid}/todo/tasks/${id}`);
     await updateDoc(taskRef, {
       completed: !completed,
     });
+  };
+};
+
+export const startUpdatingTasks = ({ id, name }) => {
+  return async (dispatch, getState) => {
+    const { uid } = getState().auth;
+    const taskRef = doc(FirebaseDB, `${uid}/todo/tasks/${id}`);
+    await updateDoc(taskRef, {
+      name: name,
+    });
+    dispatch(updateTask({ id, name }));
   };
 };
 

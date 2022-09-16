@@ -19,16 +19,15 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { startLogout } from '../../store/auth/thunks';
 
-
 export const Header = () => {
-  const {displayName, photoURL} = useSelector(state => state.auth)
-  
+  const { displayName, photoURL } = useSelector(state => state.auth);
+  const Tasklist = useSelector(state => state.todos);
   const { colorMode, toggleColorMode } = useColorMode();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const onLogout = () =>{
-    dispatch(startLogout())
-  }
+  const onLogout = () => {
+    dispatch(startLogout());
+  };
   return (
     <Box
       display="flex"
@@ -42,7 +41,7 @@ export const Header = () => {
         my="12"
         _light={{ color: 'white' }}
       >
-        TodoApp
+        Tareas: {Tasklist.length}
       </Heading>
       <Box display="flex" alignItems="center">
         <Button
@@ -56,22 +55,28 @@ export const Header = () => {
         >
           <MoonIcon size="50px" color="white" />
         </Button>
-         <Menu minHeight="min-content">
+        <Menu minHeight="min-content">
           <ButtonGroup as={MenuButton}>
-            
             <Tooltip label={displayName}>
-            <Avatar referrerPolicy="no-referrer"  name={displayName} src={`${photoURL}`}  />
+              <Avatar
+                referrerPolicy="no-referrer"
+                name={displayName}
+                src={`${photoURL}`}
+              />
             </Tooltip>
             <ChevronDownIcon />
           </ButtonGroup>
 
-          <MenuList >
-          <Text textAlign='center' py="2">{displayName}</Text>
-           
-            <MenuItem as={LinkRouter} to="/auth/login" onClick={onLogout}>Logout</MenuItem>
-           
+          <MenuList>
+            <Text textAlign="center" py="2">
+              {displayName}
+            </Text>
+
+            <MenuItem as={LinkRouter} to="/auth/login" onClick={onLogout}>
+              Logout
+            </MenuItem>
           </MenuList>
-        </Menu> 
+        </Menu>
       </Box>
     </Box>
   );

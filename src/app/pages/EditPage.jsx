@@ -1,10 +1,11 @@
 import { Box } from '@chakra-ui/react';
+import { Route, Routes } from 'react-router-dom';
 import { TodoForm } from '../components';
 
 export const EditPage = () => {
   <Box
     w="100%"
-    minHeight="100vh"
+    height="100vh"
     _light={{
       bgGradient: 'linear(to-r, #0d8ced 0%, #69daf1 90.1%)',
     }}
@@ -13,6 +14,7 @@ export const EditPage = () => {
     }}
     display="flex"
     flexDirection="column"
+    justifyContent="center"
     alignItems="center"
   >
     <TodoForm />
