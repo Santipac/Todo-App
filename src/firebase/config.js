@@ -7,12 +7,12 @@ import { getFirestore } from 'firebase/firestore/lite';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyBgj7tVlb41_guCxEdAQyNQG-g_kuVFOuo',
-  authDomain: 'todoapp-fa88d.firebaseapp.com',
-  projectId: 'todoapp-fa88d',
-  storageBucket: 'todoapp-fa88d.appspot.com',
-  messagingSenderId: '42650136153',
-  appId: '1:42650136153:web:d2c8ac23c37fd0018e0b48',
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
