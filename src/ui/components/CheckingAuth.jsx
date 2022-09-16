@@ -9,7 +9,7 @@ export const CheckingAuth = () => {
         bgGradient: 'linear(to-r, #0d8ced 0%, #69daf1 90.1%)',
       }}
       _dark={{
-        bgGradient: 'linear(to-r, #4d1458 10.9%, #3e1566 87.1%)',
+        bgGradient: 'linear(to-r, #1b263b 10.9%, #0b327c 87.1%)',
       }}
       display="flex"
       justifyContent="center"
